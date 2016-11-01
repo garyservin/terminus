@@ -1,7 +1,14 @@
 language: python
+
 python:
   - "2.7"
-# command to install dependencies
-install: "python setup.py -q install"
-# command to run tests
-script: ./run_tests.sh
+
+before_install:
+    - pip install pep8
+
+install:
+    - python setup.py -q install
+
+script:
+    - find . -name \*.py -exec pep8 {} +
+    - ./run_tests.sh
